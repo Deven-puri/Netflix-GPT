@@ -1,12 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Browse from "./Browse.tsx";
 import Login from "./Login.tsx";
+import Authentication from "./Autentication.tsx";
 
 const Body = () => {
     const approute  = createBrowserRouter([
-        {   path: "/login", 
+        {   
+            path: "/", 
             element: <Login />
-
+        },
+        {   
+            path: "/login", 
+            element: <Authentication />
         },
         {
             path: "/browse",
