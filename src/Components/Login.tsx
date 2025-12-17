@@ -1,12 +1,14 @@
-import Header from "./Header.tsx";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { checkValidEmailOnly } from "../utils/validate.tsx";
 
 const Login = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState<string | null>(null);
 
     return (
         <div className="relative h-screen w-full text-white bg-black">
-            {/* Background image */}
             <div className="absolute inset-0">
                 <img
                     className="h-full w-full object-cover opacity-60"
@@ -15,7 +17,6 @@ const Login = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
             </div>
-            <Header />
             <div className="relative z-10 flex h-full items-center justify-center px-4">
                 <div className="max-w-3xl text-center space-y-4">
                     <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">
@@ -32,6 +33,12 @@ const Login = () => {
                         className="mt-4 flex flex-col md:flex-row items-center gap-3 md:gap-2 justify-center"
                         onSubmit={(e) => {
                             e.preventDefault();
+                            const message = checkValidEmailOnly(email);
+                            if (message) {
+                                setError(message);
+                                return;
+                            }
+                            setError(null);
                             navigate("/login");
                         }}
                     >
@@ -39,6 +46,8 @@ const Login = () => {
                             type="email"
                             placeholder="Email address"
                             className="w-full md:w-96 rounded-sm bg-black/60 border border-gray-500 px-4 py-3 text-sm md:text-base outline-none focus:border-white"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <button
                             type="submit"
@@ -47,6 +56,9 @@ const Login = () => {
                             Get Started
                         </button>
                     </form>
+                    {error && (
+                        <p className="mt-3 text-sm text-red-500">{error}</p>
+                    )}
                 </div>
             </div>
         </div>
