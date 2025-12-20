@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { checkValidEmailOnly } from "../utils/validate.tsx";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.tsx";
+import { BG_URL } from "../utils/constants.tsx";
 
 const Authentication = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
@@ -68,7 +69,7 @@ const Authentication = () => {
 			<div className="absolute inset-0">
 				<img
 					className="h-full w-full object-cover opacity-60"
-					src="https://assets.nflxext.com/ffe/siteui/vlv3/29b665f6-0a62-4745-b9c2-f617fb7eadc6/web/IN-en-20251208-TRIFECTA-perspective_c78aea89-8f13-4e2c-ba7a-f9b40f53bf8c_large.jpg"
+					src={BG_URL}
 					alt="Netflix background"
 				/>
 				<div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
