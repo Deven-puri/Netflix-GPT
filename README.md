@@ -12,6 +12,8 @@
 - User authentication flow (Sign In/Sign Up/Sign Out)
 - Protected routes
 - Auth state listener with onAuthStateChanged
+- Bug fix: Sign up user displayName and login page
+- unsubscirbe to onAuth state change callback
 
 ### Deployment
 - install firebase CLI
