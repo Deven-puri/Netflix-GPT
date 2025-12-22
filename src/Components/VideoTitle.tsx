@@ -1,4 +1,9 @@
-const VideoTitle = ({title, overview}) => {
+interface VideoTitleProps {
+    title: string;
+    overview: string;
+}
+
+const VideoTitle = ({title, overview}: VideoTitleProps) => {
     return (
         <div className="w-screen aspect-video pt-[20%] px-12 absolute text-white bg-gradient-to-r from-black">
             <h1 className="text-6xl font-bold mb-4">
@@ -8,7 +13,7 @@ const VideoTitle = ({title, overview}) => {
                 {overview}
             </p>
             <div className="flex gap-4">
-            <button className="bg-white text-black py-4 px-12 text-xl rounded-lg hover:bg-white/80 transition-all duration-200 flex items-center gap-2">
+                <button className="bg-white text-black py-4 px-12 text-xl rounded-lg hover:bg-gray-500/50 transition-all duration-200 flex items-center gap-2">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z"/>
                     </svg>
