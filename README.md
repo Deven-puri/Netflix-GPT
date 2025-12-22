@@ -14,6 +14,10 @@
 - Auth state listener with onAuthStateChanged
 - Bug fix: Sign up user displayName and login page
 - unsubscirbe to onAuth state change callback
+- add hardcoded value to the constant files
+- Register TMDB API & create an app & get access token
+- Get Data from TMDB now playing movies list API
+- created  custom hools from the nowPlaying movies and the movieTrailer seperated via tailer ID
 
 ### Deployment
 - install firebase CLI

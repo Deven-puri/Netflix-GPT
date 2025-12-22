@@ -36,7 +36,7 @@ const Header = () => {
     }, [dispatch, navigate]);
 
     return (
-        <div className="fixed top-0 left-0 right-0 w-full px-8 py-4 bg-gradient-to-b from-black via-black/80 to-transparent z-50 flex justify-between items-center">
+        <div className="fixed top-0 left-0 right-0 w-full px-8 py-4 bg-transparent z-50 flex justify-between items-center">
             <img
                 className="w-32 md:w-40 object-contain"
                 src={LOGO}
