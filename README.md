@@ -18,7 +18,13 @@
 - Register TMDB API & create an app & get access token
 - Get Data from TMDB now playing movies list API
 - created  custom hools from the nowPlaying movies and the movieTrailer seperated via tailer ID
-
+- Build the Movie list
+- Movie card
+- TMDB image CND
+- custom hooks popular, trending, nowPlaying
+- GPT Search feature
+- create Search bar, Search buttons
+- Made multilingual
 ### Deployment
 - install firebase CLI
 - Firebase login

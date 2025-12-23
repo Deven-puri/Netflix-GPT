@@ -11,4 +11,6 @@ export const API_OPTIONS = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2JmZDdkMzA2MGQzYjM1OTgxOWMwMGU4MGQ2M2ZiMiIsIm5iZiI6MTc2NjMwMjc4OS41Miwic3ViIjoiNjk0N2E0NDVmOTQ4ZDE3ZDFmODEyMDQ4Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.ELYZLOgWvB0JM0JcfLGMOS_24WKmemKqbz8-ZCFU4cs'
   }
 };
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";
 
+export const SUPPORTED_LANGUAGES = [{ identifier: "en", name: "English" }, { identifier: "es", name: "Spanish" }, { identifier: "ur", name: "Urdu" }, { identifier: "hi", name: "Hindi"}];
