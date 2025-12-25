@@ -8,7 +8,7 @@ const MovieCard = ({ posterPath }: MovieCardProps) => {
     if (!posterPath) return null;
     
     return (
-        <div className="w-[10vw] pr-4 flex-shrink-0 transition-transform duration-300 hover:scale-110 hover:z-10">
+        <div className="w-24 sm:w-32 md:w-40 lg:w-48 pr-2 sm:pr-4 flex-shrink-0 transition-transform duration-300 hover:scale-110 hover:z-10">
             <img 
                 alt="MovieCard" 
                 src={IMG_CDN_URL + posterPath}

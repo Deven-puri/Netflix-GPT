@@ -1,11 +1,13 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants.tsx";
 import { addNowPlayingMovies } from "../utils/MovieSlice.tsx";
 
 const useNowPlayingMovies = () => {
     const dispatch = useDispatch();
-    
+    const nowPlayingMovies = useSelector((store: any) => store.movies.nowPlayingMovies);
+    const popularMovies = useSelector((store: any) => store.movies.popularMovies);
+    const trendingMovies = useSelector((store: any) => store.movies.trendingMovies);
     const getNowPlayingMovies = async () => {
         try {
             const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', API_OPTIONS);
@@ -18,8 +20,7 @@ const useNowPlayingMovies = () => {
     };
     
     useEffect(() => {
-        getNowPlayingMovies();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        if(!nowPlayingMovies) getNowPlayingMovies();
     }, []);
 };
 

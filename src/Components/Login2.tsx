@@ -4,7 +4,7 @@ import { checkValidEmailOnly } from "../utils/validate.tsx";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase.tsx";
 import { BG_URL } from "../utils/constants.tsx";
-
+import { LOGO } from "../utils/constants.tsx";
 const Authentication = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
 	const nameRef = useRef<HTMLInputElement | null>(null);
@@ -66,6 +66,14 @@ const Authentication = () => {
 
 	return (
 		<div className="relative min-h-screen w-full text-white bg-black">
+			{/* Responsive Netflix Logo Top Left */}
+			<div className="absolute top-0 left-0 w-full flex items-start justify-start z-20 p-2 sm:p-4">
+				<img
+					src={LOGO}
+					alt="Netflix logo"
+					className="w-24 sm:w-32 md:w-40 object-contain"
+				/>
+			</div>
 			<div className="absolute inset-0">
 				<img
 					className="h-full w-full object-cover opacity-60"
@@ -78,67 +86,67 @@ const Authentication = () => {
 				<div className="w-full max-w-sm rounded-md bg-black/80 px-8 py-10 shadow-xl border border-gray-700">
 					<h2 className="mb-6 text-2xl font-bold">{isSignIn ? "Sign In" : "Sign Up"}</h2>
 
-				<form
-					className="space-y-4"
-					onSubmit={(e) => {
-						e.preventDefault();
-						handleButtonClick();
-					}}
-				>
-					{!isSignIn && (
+					<form
+						className="space-y-4"
+						onSubmit={(e) => {
+							e.preventDefault();
+							handleButtonClick();
+						}}
+					>
+						{!isSignIn && (
+							<input
+								ref={nameRef}
+								type="text"
+								placeholder="Full Name"
+								className="w-full rounded-sm bg-zinc-900 border border-gray-600 px-3 py-2 text-sm outline-none focus:border-white"
+							/>
+						)}
 						<input
-							ref={nameRef}
-							type="text"
-							placeholder="Full Name"
+							ref={emailRef}
+							type="email"
+							placeholder="Email Address"
 							className="w-full rounded-sm bg-zinc-900 border border-gray-600 px-3 py-2 text-sm outline-none focus:border-white"
 						/>
-					)}
-					<input
-						ref={emailRef}
-						type="email"
-						placeholder="Email Address"
-						className="w-full rounded-sm bg-zinc-900 border border-gray-600 px-3 py-2 text-sm outline-none focus:border-white"
-					/>
-					<input
-						ref={passwordRef}
-						type="password"
-						placeholder="Password"
-						className="w-full rounded-sm bg-zinc-900 border border-gray-600 px-3 py-2 text-sm outline-none focus:border-white"
-					/>
-					<button
-						type="submit"
-						className="w-full rounded-sm bg-red-600 py-2 text-base font-semibold hover:bg-red-700 transition"
-					>
-						{isSignIn ? "Sign In" : "Sign Up"}
-					</button>
-				</form>
+						<input
+							ref={passwordRef}
+							type="password"
+							placeholder="Password"
+							className="w-full rounded-sm bg-zinc-900 border border-gray-600 px-3 py-2 text-sm outline-none focus:border-white"
+						/>
+						<button
+							type="submit"
+							className="w-full rounded-sm bg-red-600 py-2 text-base font-semibold hover:bg-red-700 transition"
+						>
+							{isSignIn ? "Sign In" : "Sign Up"}
+						</button>
+					</form>
 
 					{error && <p className="mt-3 text-sm text-red-500">{error}</p>}
 
 					<p className="mt-6 text-sm text-gray-400">
-					{isSignIn ? (
-						<>
-							New to Netflix?{" "}
-							<button
-								type="button"
-								className="text-white font-medium hover:underline"
-								onClick={() => setIsSignIn(false)}
-							>
-								Sign up now
-							</button>
-						</>
-					) : (
-						<>
-							Already have an account?{" "}
-							<button
-								type="button"
-								className="text-white font-medium hover:underline"
-								onClick={() => setIsSignIn(true)}
-							>
-								Sign in now
-							</button>
-						</>
-					)}
+						{isSignIn ? (
+							<>
+								New to Netflix?{" "}
+								<button
+									type="button"
+									className="text-white font-medium hover:underline"
+									onClick={() => setIsSignIn(false)}
+								>
+									Sign up now
+								</button>
+							</>
+						) : (
+							<>
+								Already have an account?{" "}
+								<button
+									type="button"
+									className="text-white font-medium hover:underline"
+									onClick={() => setIsSignIn(true)}
+								>
+									Sign in now
+								</button>
+							</>
+						)}
 					</p>
 				</div>
 			</div>

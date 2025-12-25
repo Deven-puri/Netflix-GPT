@@ -42,15 +42,15 @@ const Header = () => {
         dispatch({ type: "config/changeLanguage", payload: e.target.value });
     };
     return (
-        <div className="fixed top-0 left-0 right-0 w-full px-8 py-4 bg-transparent z-50 flex justify-between items-center">
+        <div className="fixed top-0 left-0 right-0 w-full px-2 sm:px-4 md:px-8 py-2 sm:py-4 bg-transparent z-50 flex flex-wrap flex-row justify-between items-center gap-2">
             <img
-                className="w-32 md:w-40 object-contain"
+                className="w-20 sm:w-32 md:w-40 object-contain"
                 src={LOGO}
                 alt="Netflix logo"
             />
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-wrap flex-row items-center gap-2 sm:gap-4 justify-end w-auto">
                 {showGPTSearch && (
-                    <select className="bg-black text-white px-1 py-2 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-600" onChange={handleLangeuageChange}>
+                    <select className="bg-black text-white px-1 py-2 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-600 min-w-[80px] sm:min-w-[120px]" onChange={handleLangeuageChange}>
                         {SUPPORTED_LANGUAGES.map((lang) => (
                             <option key={lang.identifier} value={lang.identifier}>
                                 {lang.name}
@@ -59,7 +59,7 @@ const Header = () => {
                     </select>
                 )}
                 <button
-                    className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
+                    className="py-1 px-2 sm:py-2 sm:px-4 mx-1 sm:mx-2 my-0 bg-purple-800 text-white rounded text-xs sm:text-base whitespace-nowrap"
                     onClick={() => {
                         if (showGPTSearch) {
                             navigate("/browse");
@@ -74,11 +74,11 @@ const Header = () => {
                 <img 
                     alt="usericon" 
                     src={USER_AVATAR} 
-                    className="w-8 h-8 rounded cursor-pointer hover:ring-2 hover:ring-white transition"
+                    className="w-8 h-8 rounded cursor-pointer hover:ring-2 hover:ring-white transition mx-1 sm:mx-2"
                 />
                 <button 
                     onClick={handleSignOut}
-                    className="bg-red-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-red-700 transition"
+                    className="bg-red-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded text-xs sm:text-sm font-semibold hover:bg-red-700 transition whitespace-nowrap mx-1 sm:mx-2"
                 >
                     Sign Out
                 </button>

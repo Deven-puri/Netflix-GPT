@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { checkValidEmailOnly } from "../utils/validate.tsx";
-import { BG_URL } from "../utils/constants.tsx";
+import { BG_URL, LOGO } from "../utils/constants.tsx";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -17,6 +17,14 @@ const Login = () => {
                     alt="Netflix background"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
+            </div>
+            {/* Responsive Netflix Logo Top Left */}
+            <div className="absolute top-0 left-0 w-full flex items-start justify-start z-20 p-2 sm:p-4">
+                <img
+                    src={LOGO}
+                    alt="Netflix logo"
+                    className="w-24 sm:w-32 md:w-40 object-contain"
+                />
             </div>
             <div className="relative z-10 flex h-full items-center justify-center px-4">
                 <div className="max-w-3xl text-center space-y-4">
