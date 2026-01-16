@@ -18,8 +18,8 @@ const Header = () => {
             .then(() => {
                 navigate("/");
             })
-            .catch((error) => {
-                console.error("Sign out error:", error);
+            .catch(() => {
+                // Silent fail - user will remain on page
             });
     };
     useEffect(() => {
@@ -41,12 +41,25 @@ const Header = () => {
     const handleLangeuageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch({ type: "config/changeLanguage", payload: e.target.value });
     };
+
+    const handleLogoClick = () => {
+        if (showGPTSearch) {
+            // On GPT search page, redirect to homepage
+            dispatch(toggleGPTSearchView());
+            navigate("/browse");
+        } else {
+            // On homepage, reload the page
+            window.location.reload();
+        }
+    };
+
     return (
         <div className="fixed top-0 left-0 right-0 w-full px-2 sm:px-4 md:px-8 py-2 sm:py-4 bg-transparent z-50 flex flex-wrap flex-row justify-between items-center gap-2">
             <img
-                className="w-20 sm:w-32 md:w-40 object-contain"
+                className="w-20 sm:w-32 md:w-40 object-contain cursor-pointer hover:opacity-80 transition-opacity"
                 src={LOGO}
                 alt="Netflix logo"
+                onClick={handleLogoClick}
             />
             <div className="flex flex-wrap flex-row items-center gap-2 sm:gap-4 justify-end w-auto">
                 {showGPTSearch && (
@@ -78,7 +91,7 @@ const Header = () => {
                 />
                 <button 
                     onClick={handleSignOut}
-                    className="bg-red-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded text-xs sm:text-sm font-semibold hover:bg-red-700 transition whitespace-nowrap mx-1 sm:mx-2"
+                    className="bg-red-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-red-700 transition whitespace-nowrap mx-1 sm:mx-2"
                 >
                     Sign Out
                 </button>

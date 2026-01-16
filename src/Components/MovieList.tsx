@@ -3,9 +3,10 @@ import MovieCard from "./MovieCard.tsx";
 interface MovieListProps {
     title: string;
     movies: any[];
+    fixedSize?: boolean;
 }
 
-const MovieList = ({ title, movies }: MovieListProps) => {
+const MovieList = ({ title, movies, fixedSize = false }: MovieListProps) => {
     if (!movies || movies.length === 0) return null;
     
     const isNowPlaying = title === "Now Playing";
@@ -16,7 +17,7 @@ const MovieList = ({ title, movies }: MovieListProps) => {
             <div className="flex overflow-x-auto overflow-y-hidden scrollbar-hide">
                 <div className="flex gap-1 sm:gap-2">
                     {movies.map((movie) => (
-                        <MovieCard key={movie.id} posterPath={movie.poster_path} />
+                        <MovieCard key={movie.id} posterPath={movie.poster_path} movieId={movie.id} fixedSize={fixedSize} />
                     ))}
                 </div>
             </div>

@@ -10,10 +10,9 @@ const useTrendingMovies = () => {
         try {
             const data = await fetch('https://api.themoviedb.org/3/trending/movie/day?page=1', API_OPTIONS);
             const json = await data.json();
-            console.log("Trending Movies API Response:", json);
             dispatch(addTrendingMovies(json.results));
         } catch (error) {
-            console.error("Error fetching trending movies:", error);
+            // Silent fail - movies won't load but app continues
         }
     };
     

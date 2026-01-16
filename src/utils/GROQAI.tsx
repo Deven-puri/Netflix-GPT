@@ -14,7 +14,6 @@ export async function groqCompletion(input: string) {
       ],
       max_tokens: 150,
     });
-    console.log('GROQ Response:', response);
     return response;
   } catch (error: unknown) {
     if (error && typeof error === 'object' && 'message' in error) {

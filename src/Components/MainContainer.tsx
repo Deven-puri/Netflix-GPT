@@ -11,7 +11,7 @@ const MainContainer = () => {
     return (
         <div className="relative w-full aspect-[16/9] max-h-[100vh] min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px] mt-[60px] sm:mt-0">
             <VideoBackground movieId={id} />
-            <VideoTitle title={original_title} overview={overview} />
+            <VideoTitle title={original_title} overview={overview} movieId={id} />
         </div>
     );
 };

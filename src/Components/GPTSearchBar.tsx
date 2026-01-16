@@ -1,9 +1,7 @@
 import React, { useRef, useState } from "react";
 import { BG_URL } from "../utils/constants.tsx";
-import { FaSearch } from "react-icons/fa";
 import lang from "../utils/LanguageConstants.tsx";
 import { useSelector, useDispatch } from "react-redux";
-import { SUPPORTED_LANGUAGES } from "../utils/constants.tsx";
 import { groqCompletion } from "../utils/GROQAI.tsx";
 import { addGPTMovieResult } from "../utils/gptSlice.tsx";
 
@@ -20,19 +18,16 @@ const GPTSearchBar = () => {
     const selectedLang = lang[mappedKey];
     const searchText = useRef<HTMLInputElement>(null);
     const [gptResult, setGptResult] = useState<React.ReactNode>("");
-    const [loading, setLoading] = useState(false);
     const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
     const searchMovieTMDB = async (Movie: string) => {
         const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(Movie)}&include_adult=false&language=en-US&page=1`);
         const json = await response.json();
-        // console.log(`TMDB response for '${Movie}':`, json);
         return json.results;
     };
 
     const handleGptSearchClick = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!searchText.current?.value) return;
-        setLoading(true);
         setGptResult("");
         const gptQuery =
             "Act as a Movie Recommendation system and suggest some movies for the query: " +
@@ -42,7 +37,6 @@ const GPTSearchBar = () => {
             let movieString = "";
             if ('error' in response) {
                 setGptResult("Error: " + response.error);
-                setLoading(false);
                 return;
             }
             if (
@@ -54,7 +48,6 @@ const GPTSearchBar = () => {
                 movieString = response.choices[0].message.content;
             } else {
                 setGptResult("No result from Groq API.");
-                setLoading(false);
                 return;
             }
 
@@ -64,13 +57,10 @@ const GPTSearchBar = () => {
             const promiseArray = getMovies.map(movie => searchMovieTMDB(movie));
             // Await all TMDB results
             const tmdbresult = await Promise.all(promiseArray);
-            console.log('Final TMDB Results:', tmdbresult); 
             // Dispatch the movie array to Redux using the correct action
             dispatch(addGPTMovieResult({ movieName: getMovies, movieResults: tmdbresult }));
         } catch (err: any) {
             setGptResult("Groq API error: " + (err?.message || String(err)));
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -92,12 +82,12 @@ const GPTSearchBar = () => {
                     <input
                         ref={searchText}
                         type="text"
-                        className="px-4 py-2 rounded-l-lg focus:outline-none w-80 text-black"
+                        className="px-4 py-2 rounded-lg focus:outline-none w-80 text-black"
                         placeholder={selectedLang.placeHolder}
                     />
                     <button
                         type="submit"
-                        className="px-6 py-2 bg-red-600 text-white rounded-r-lg font-semibold hover:bg-red-700 transition"
+                        className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
                     >
                         {selectedLang.search}
                     </button>
